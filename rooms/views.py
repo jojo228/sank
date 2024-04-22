@@ -11,7 +11,6 @@ from django.views.generic import (
     ListView,
     FormView,
 )
-from authentication.models import Client
 from rooms.forms import CreatePhotoForm, CreateRoomForm
 from rooms.models import Room, Photo
 from django.contrib.messages.views import SuccessMessageMixin
@@ -23,7 +22,6 @@ from django.shortcuts import render, redirect, reverse
 
 
 
-user_login_url = "authentication:login"
 
 
 # -------------------------- ROOMS -------------------#
@@ -34,7 +32,7 @@ class RoomCreateView(LoginRequiredMixin, CreateView):
     form_class = CreateRoomForm
     template_name = "room_create.html"
     success_url = reverse_lazy("rooms:host-list")
-    login_url = reverse_lazy(user_login_url)
+    
 
     def form_valid(self, form):
         form.instance.host = self.request.user.client
@@ -51,7 +49,7 @@ class RoomHostListView(ListView):
     model = Room
     context_object_name = "rooms"
     template_name = "room_list.html"
-    login_url = reverse_lazy(user_login_url)
+    
 
     def get_queryset(self):
         return Room.objects.filter(host=self.request.user.client).order_by(
@@ -71,7 +69,7 @@ class RoomListView(ListView):
     paginate_by = 30
     context_object_name = "rooms"
     template_name = "listing.html"
-    login_url = reverse_lazy(user_login_url)
+    
 
     def get_queryset(self):
         return Room.objects.all().order_by("-created")
@@ -113,7 +111,7 @@ class RoomUpdateView(LoginRequiredMixin, UpdateView):
     form_class = CreateRoomForm
     template_name = "room_edit.html"
     success_url = reverse_lazy("rooms:host-list")
-    login_url = reverse_lazy(user_login_url)
+    
 
     def get_context_data(self, **kwargs):
         context = super(RoomUpdateView, self).get_context_data(**kwargs)

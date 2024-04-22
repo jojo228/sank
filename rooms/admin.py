@@ -82,7 +82,6 @@ class RoomAdmin(admin.ModelAdmin):
         "house_rules",
     )
 
-    raw_id_fields = ("host",)
 
     def count_amenities(self, obj):
         return obj.amenities.count()

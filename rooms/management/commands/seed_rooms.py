@@ -3,7 +3,6 @@ from django.core.management.base import BaseCommand
 from django.contrib.admin.utils import flatten
 from django_seed import Seed
 from rooms import models as room_models
-from authentication import models as user_models
 
 
 class Command(BaseCommand):
@@ -21,7 +20,6 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         number = options.get("number")
         seeder = Seed.seeder()
-        all_user = user_models.User.objects.all()
         room_types = room_models.RoomType.objects.all()
         seeder.add_entity(
             room_models.Room,

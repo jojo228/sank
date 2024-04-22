@@ -17,11 +17,9 @@ urlpatterns = [
     # path('admin/', admin.site.urls),
     path("", include("main.urls")),
     path("rooms/", include("rooms.urls", namespace="rooms")),
-    path("authentication/", include("authentication.urls", namespace="authentication")),
     path("lists/", include("lists.urls", namespace="lists")),
     path(os.environ.get("ADMIN_URL", "admin/"), admin.site.urls),
     path("sentry-debug/", trigger_error),
-    path('accounts/', include('allauth.urls')),
     
 ]
 

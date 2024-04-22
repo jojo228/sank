@@ -1,3 +1,0 @@
-from authentication.forms.registration_form import CreateUserForm
-from authentication.forms.login_form import LoginForm
-from authentication.forms.profil_form import ClientForm

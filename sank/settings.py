@@ -46,17 +46,12 @@ DJANGO_APPS = [
 THIRD_PARTY_APPS = [
     "django_countries", "django_seed", "storages",
 
-    # all auth configurations
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.google'
+  
     ]
 
 
 PROJECT_APPS = [
     
-    "authentication.apps.AuthenticationConfig",
     "main.apps.MainConfig",
     "rooms.apps.RoomsConfig",
     "lists.apps.ListsConfig",
@@ -75,7 +70,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     "django.middleware.locale.LocaleMiddleware",
-    "allauth.account.middleware.AccountMiddleware",
 
 ]
 
@@ -131,7 +125,6 @@ SESSION_EXPIRE_SECONDS = 3600  # 1 hour
 
 SESSION_EXPIRE_AFTER_LAST_ACTIVITY = True
 
-SESSION_TIMEOUT_REDIRECT = 'authentication:login'
 
 
 # Password validation
@@ -201,34 +194,12 @@ PASSWORD_RESET_TIMEOUT = 14400
 
 AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
-    "authentication.backends.EmailBackend",
-    'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
 
-SOCIALACCOUNT_PROVIDERS = {
-    'google': {
-        'SCOPE' : [
-            'profile',
-            'email'
-        ],
-        'APP': {
-            'client_id': os.environ['CLIENT_ID'],
-            'secret': os.environ['CLIENT_SECRET'],
-        },
-        'AUTH_PARAMS': {
-            'access_type':'online',
-        }
-    }
-}
 
-SITE_ID = 2
 
-SOCIALACCOUNT_LOGIN_ON_GET = True
 
-SOCIALACCOUNT_ADAPTER = "allauth.socialaccount.adapter.DefaultSocialAccountAdapter"
-
-LOGIN_URL = "/authentication/login/"
 
 LOGIN_REDIRECT_URL = "main:home"
 

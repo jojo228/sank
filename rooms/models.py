@@ -74,9 +74,6 @@ class Room(main_models.TimeStampedModel):
     check_in = models.CharField(max_length=20, choices=CHECK_IN)
     check_out = models.CharField(max_length=20, choices=CHECK_OUT)
     instant_book = models.BooleanField(default=False)
-    host = models.ForeignKey(
-        "authentication.Client", related_name="rooms", on_delete=models.CASCADE
-    )
     room_type = models.ForeignKey(
         "RoomType", related_name="rooms", on_delete=models.SET_NULL, null=True
     )
