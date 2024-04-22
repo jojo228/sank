@@ -1,0 +1,763 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <!--=============== basic  ===============-->
+        <meta charset="UTF-8">
+        <title>sank - Bienvenu - Akwaba </title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta name="robots" content="index, follow"/>
+        <meta name="keywords" content=""/>
+        <meta name="description" content=""/>
+
+        <!--=============== css  ===============-->
+        <link type="text/css" rel="stylesheet" href="{% static 'css/reset.css' %}">
+        <link type="text/css" rel="stylesheet" href="{% static 'css/plugins.css' %}">
+        <link type="text/css" rel="stylesheet" href="{% static 'css/style.css' %}">
+        <link type="text/css" rel="stylesheet" href="{% static 'css/color.css' %}">
+        
+        <!--=============== favicons ===============-->
+        <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
+        {% block css %}
+     
+        {% endblock css %}
+    </head>
+    <body>
+        <!--loader-->
+        <div class="loader-wrap">
+            <div class="pin">
+                <div class="pulse"></div>
+            </div>
+        </div>
+        <!--loader end-->
+        <!-- Main  -->
+        <div id="main">
+            <!-- header-->
+            <header class="main-header">
+                <!-- header-top-->
+                <div class="header-top fl-wrap">
+                    <div class="container">
+                        <div class="logo-holder">
+                            <a href="{% url 'main:home' %}"><img src="" alt="">SANK-LUXURY</a>
+                        </div>
+                        {% if request.user.is_authenticated %}
+                        <a href="{% url 'rooms:create' %}" class="add-hotel">Publier<span><i class="far fa-plus"></i></span></a>
+                        {% endif %}
+                        <a href="{% url 'authentication:login' %}">            
+                            <div class="show-reg-form"><i class="fa fa-sign-in"></i>Se connecter</div>
+                        </a>    
+                        <div class="lang-wrap">
+                            <div class="show-lang"><img src="{% static 'images/lan/2.png' %}" alt=""> <span>Fr</span><i class="fa fa-caret-down"></i></div>
+                            <ul class="lang-tooltip green-bg">
+                                <li><a href="#"><img src="{% static 'images/lan/1.png' %}" alt=""> Eng</a></li>
+                            </ul>
+                        </div>
+                        <!-- <div class="currency-wrap">
+                            <div class="show-currency-tooltip"><i class="fas fa-dollar-sign"></i> <span>XOF <i class="fa fa-caret-down"></i> </span></div>
+                            <ul class="currency-tooltip">
+                                <li><a href="#"><i class="far fa-euro-sign"></i> USD</a></li>
+                               
+                            </ul>
+                        </div> -->
+                    </div>
+                </div>
+                <!-- header-top end-->
+                <!-- header-inner-->
+                <div class="header-inner fl-wrap">
+                    <div class="container">
+                        <div class="show-search-button"><span>Recherche</span> <i class="fas fa-search"></i> </div>
+                        {% if request.user.is_authenticated %}
+                        <!-- <div class="wishlist-link"><i class="fal fa-heart"></i><span class="wl_counter">3</span></div> -->
+                        <div class="header-user-menu">
+                            <div class="header-user-name">
+                                <span><img src="{% static 'images/avatar/1.jpg' %}" alt=""></span>
+                                {{request.user.get_full_name}}
+                            </div>
+                            <ul>
+                                <li><a href="{% url 'authentication:profil' %}"> Profil</a></li>
+                                <li><a href="{% url 'rooms:create' %}"> Publier</a></li>
+                                <li><a href="{% url 'authentication:logout' %}">Se deconnecter</a></li>
+                            </ul>
+                        </div>
+                        {% endif %}  
+                        <div class="home-btn"><a href="{% url 'main:home' %}"><i class="fas fa-home"></i></a></div>
+                        <!-- nav-button-wrap-->
+                        <div class="nav-button-wrap color-bg">
+                            <div class="nav-button">
+                                <span></span><span></span><span></span>
+                            </div>
+                        </div>
+                        <!-- nav-button-wrap end-->
+                        <!--  navigation -->
+                        <div class="nav-holder main-menu">
+                            <nav>
+                                <ul>
+                                    <li><a href="{% url 'main:home' %}" class="act-link">Accueil</a></li>
+                                    <li><a href="{% url 'rooms:list' %}">Nos Appartements</a> </li>
+                                    <li><a href="{% url 'main:about' %}">A Propos</a> </li>
+                                    <li><a href="{% url 'main:contacts' %}">Contacts</a></li>
+                                    <li><a href="{% url 'main:help' %}">FAQ</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <!-- navigation  end -->
+                        <!-- wishlist-wrap-->            
+                        <div class="wishlist-wrap scrollbar-inner novis_wishlist">
+                            <div class="box-widget-content">
+                                <div class="widget-posts fl-wrap">
+                                    <ul>
+                                        <li class="clearfix">
+                                            <a href="#"  class="widget-posts-img"><img src="{% static 'images/gal/1.jpg' %}" class="respimg" alt=""></a>
+                                            <div class="widget-posts-descr">
+                                                <a href="#" title="">Park Central</a>
+                                                <div class="listing-rating card-popup-rainingvis" data-starrating2="5"></div>
+                                                <div class="geodir-category-location fl-wrap"><a href="#"><i class="fas fa-map-marker-alt"></i> 40 JOURNAL SQUARE PLAZA, NJ, US</a></div>
+                                                <span class="rooms-price">$80 <strong> /  Awg</strong></span>
+                                            </div>
+                                        </li>
+                                        
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- wishlist-wrap end--> 
+                    </div>
+                </div>
+                <!-- header-inner end-->
+                <!-- header-search -->
+                <div class="header-search vis-search">
+                    <div class="container">
+                        <div class="row">
+                            <!-- header-search-input-item -->
+                            <div class="col-sm-4">
+                                <div class="header-search-input-item fl-wrap location autocomplete-container">
+                                    <label>Type de destination ou de pièce</label>
+                                    <span class="header-search-input-item-icon"><i class="fal fa-map-marker-alt"></i></span>
+                                    <input type="text" placeholder="Location" class="autocomplete-input" id="autocompleteid" value=""/>
+                                    <a href="#"><i class="fal fa-dot-circle"></i></a>
+                                </div>
+                            </div>
+                            <!-- header-search-input-item end -->
+                            <!-- header-search-input-item -->
+                            <div class="col-sm-3">
+                                <div class="header-search-input-item fl-wrap date-parent">
+                                    <label>Date </label>
+                                    <span class="header-search-input-item-icon"><i class="fal fa-calendar-check"></i></span>
+                                    <input type="text" placeholder="When" name="header-search"   value=""/>
+                                </div>
+                            </div>
+                            <!-- header-search-input-item end -->                             
+                                                      
+                            <!-- header-search-input-item -->
+                            <div class="col-sm-2">
+                                <div class="header-search-input-item fl-wrap">
+                                    <button class="header-search-button" onclick="window.location.href='listing.html'">Recherche <i class="far fa-search"></i></button>
+                                </div>
+                            </div>
+                            <!-- header-search-input-item end -->                                                          
+                        </div>
+                    </div>
+                    <div class="close-header-search"><i class="fal fa-angle-double-up"></i></div>
+                </div>
+                <!-- header-search  end -->
+            </header>
+            {% block content  %}
+            <!--  header end -->
+            <!--  wrapper  -->
+            <div id="wrapper">
+                <!-- content-->
+                <div class="content">
+                    <!--section -->
+                    <section class="hero-section" data-scrollax-parent="true" id="sec1">
+                        <div class="hero-parallax">
+                            <div class="bg"  data-bg="{% static 'images/bg/back.jpeg' %}" data-scrollax="properties: { translateY: '200px' }"></div>
+                            <div class="overlay op7"></div>
+                        </div>
+                        <div class="hero-section-wrap fl-wrap">
+                            <div class="container">
+                                <div class="home-intro">
+                                    <div class="section-title-separator"><span></span></div>
+                                    <h2>SANK-LUXURY</h2>
+                                    <span class="section-separator"></span>                                    
+                                    <h3>Découvrez toute une gamme d'appartements de luxe</h3>
+                                </div>
+                                
+
+
+                            </div>
+                        </div>
+                        <div class="header-sec-link">
+                            <div class="container"><a href="#sec2" class="custom-scroll-link color-bg"><i class="fal fa-angle-double-down"></i></a></div>
+                        </div>
+                    </section>
+                    <!-- section end -->
+                    <!--section -->
+                    <section id="sec2">
+                        <div class="container">
+                            <div class="section-title">
+                                <div class="section-title-separator"><span></span></div>
+                                <h2>Ce Que Nous Vous Réservons</h2>
+                                <span class="section-separator"></span>
+                                <p>Ne vous faites pas raconter, voyez vous même.</p>
+                            </div>
+						 </div>
+                            <!-- portfolio start -->
+                            <div class="gallery-items fl-wrap mr-bot spad home-grid">
+                                <!-- gallery-item-->
+                                <div class="gallery-item">
+                                    <div class="grid-item-holder">
+                                        <div class="listing-item-grid">
+                                            <div class="listing-counter"><span></span> Disponible</div>
+                                            <img  src="{% static 'images/city/2.jpeg' %}"   alt="">
+                                            <div class="listing-item-cat">
+                                                <h3><a href="{% url 'main:listing' %}">Studio</a></h3>
+                                                <div class="weather-grid"   data-grcity="Studio"></div>
+                                                <div class="clearfix"></div>
+                                                <p>Constant care and attention to the patients makes good record</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- gallery-item end-->
+                                <!-- gallery-item-->
+                                <div class="gallery-item gallery-item-second">
+                                    <div class="grid-item-holder">
+                                        <div class="listing-item-grid">
+                                            <img  src="{% static 'images/city/3.jpeg' %}"   alt="">
+                                            <div class="listing-counter"><span></span> Disponible</div>
+                                            <div class="listing-item-cat">
+                                                <h3><a href="{% url 'main:listing' %}">Chambre Salon</a></h3>
+                                                <div class="weather-grid"   data-grcity="Chambre Salon"></div>
+                                                <div class="clearfix"></div>
+                                                <p>Constant care and attention to the patients makes good record</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- gallery-item end-->
+                                <!-- gallery-item-->
+                                <div class="gallery-item">
+                                    <div class="grid-item-holder">
+                                        <div class="listing-item-grid">
+                                            <div class="listing-counter"><span></span> Disponible</div>
+                                            <img  src="{% static 'images/city/1.jpeg' %}"   alt="">
+                                            <div class="listing-item-cat">
+                                                <h3><a href="{% url 'main:listing' %}">Cuisine Complète</a></h3>
+                                                <div class="weather-grid"   data-grcity="Cuisine Complète"></div>
+                                                <div class="clearfix"></div>
+                                                <p>Constant care and attention to the patients makes good record</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- gallery-item end-->
+                                <!-- gallery-item-->
+                                <div class="gallery-item">
+                                    <div class="grid-item-holder">
+                                        <div class="listing-item-grid">
+                                            <div class="listing-counter"><span></span> Disponible</div>
+                                            <img  src="{% static 'images/city/4.jpeg' %}"   alt="">
+                                            <div class="listing-item-cat">
+                                                <h3><a href="{% url 'main:listing' %}">Baignoire</a></h3>
+                                                <div class="weather-grid"   data-grcity="Baignoire"></div>
+                                                <div class="clearfix"></div>
+                                                <p>Constant care and attention to the patients makes good record</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- gallery-item end-->
+                                <!-- gallery-item-->
+                                <div class="gallery-item">
+                                    <div class="grid-item-holder">
+                                        <div class="listing-item-grid">
+                                            <div class="listing-counter"><span></span> Disponible</div>
+                                            <img  src="{% static 'images/city/5.jpeg' %}"   alt="">
+                                            <div class="listing-item-cat">
+                                                <h3><a href="{% url 'main:listing' %}">Cuisine</a></h3>
+                                                <div class="weather-grid"   data-grcity="Cuisine"></div>
+                                                <div class="clearfix"></div>
+                                                <p>Constant care and attention to the patients makes good record</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- gallery-item end-->
+                            </div>
+                            <!-- portfolio end -->
+                    </section>
+                    <!-- section end -->
+                    <!-- section-->
+                    <section class="grey-blue-bg">
+                        <!-- container-->
+                        <div class="container">
+                            <div class="section-title">
+                                <div class="section-title-separator"><span></span></div>
+                                <h2>Nos Appartements</h2>
+                                <span class="section-separator"></span>
+                            </div>
+                        </div>
+                        <!-- container end-->
+                        <!-- carousel -->
+                        <div class="list-carousel fl-wrap card-listing ">
+                            <!--listing-carousel-->
+                            <div class="listing-carousel  fl-wrap ">
+                                <!--slick-slide-item-->
+                                {% for room in rooms %}
+                                <div class="slick-slide-item">
+                                    <!-- listing-item  -->
+                                    <div class="listing-item">
+                                        <article class="geodir-category-listing fl-wrap">
+                                            <div class="geodir-category-img">
+                                                <a href="{% url 'rooms:detail' room.id %}"><img src="{{room.first_photo}}" alt=""></a>
+                                                <div class="listing-avatar"><a href="{% url 'main:author-single' %}"><img src="{% if room.host.avatar %} {{room.host.avatar.url}} {% else %} {% static 'images/avatar/1.jpg' %} {% endif %}" alt=""></a>
+                                                    <span class="avatar-tooltip">Ajouté par  <strong>{{room.host}}</strong></span>
+                                                </div>
+                                                <!-- <div class="geodir-category-opt">
+                                                    <div class="listing-rating card-popup-rainingvis" data-starrating2="5"></div>
+                                                    <div class="rate-class-name">
+                                                        <div class="score"><strong>Very Good</strong>27 Reviews </div>
+                                                        <span>5.0</span>                                             
+                                                    </div>
+                                                </div> -->
+                                            </div>
+                                            <div class="geodir-category-content fl-wrap title-sin_item">
+                                                <div class="geodir-category-content-title fl-wrap">
+                                                    <div class="geodir-category-content-title-item">
+                                                        <h3 class="title-sin_map"><a href="{% url 'rooms:detail' room.id %}">{{room.name}}</a></h3>
+                                                        <div class="geodir-category-location fl-wrap"><a href="#" class="map-item"><i class="fas fa-map-marker-alt"></i> {{room.address}}</a></div>
+                                                    </div>
+                                                </div>
+                                                <p>{{room.description}}</p>
+                                                <!-- <ul class="facilities-list fl-wrap">
+                                                    <li><i class="fal fa-wifi"></i><span>Free WiFi</span></li>
+                                                    <li><i class="fal fa-parking"></i><span>Parking</span></li>
+                                                    <li><i class="fal fa-smoking-ban"></i><span>Non-smoking Rooms</span></li>
+                                                    <li><i class="fal fa-utensils"></i><span> Restaurant</span></li>
+                                                </ul> -->
+                                                <div class="geodir-category-footer fl-wrap">
+                                                    <!-- <div class="geodir-category-price">Prix / nuit <span> <br>  {{room.price}} F</span></div> -->
+                                                    <!-- <div class="geodir-opt-list">
+                                                        <a href="#" class="single-map-item" data-newlatitude="40.72956781" data-newlongitude="-73.99726866"><i class="fal fa-map-marker-alt"></i><span class="geodir-opt-tooltip">On the map</span></a>
+                                                        <a href="#" class="geodir-js-favorite"><i class="fal fa-heart"></i><span class="geodir-opt-tooltip">Save</span></a>
+                                                        <a href="#" class="geodir-js-booking"><i class="fal fa-exchange"></i><span class="geodir-opt-tooltip">Find Directions</span></a>
+                                                    </div> -->
+                                                </div>
+                                            </div>
+                                        </article>
+                                    </div>
+                                    <!-- listing-item end -->
+                                </div>
+                                {% endfor %}
+                                <!--slick-slide-item end-->
+                                
+                            </div>
+                            <!--listing-carousel end-->
+                            <div class="swiper-button-prev sw-btn"><i class="fa fa-long-arrow-left"></i></div>
+                            <div class="swiper-button-next sw-btn"><i class="fa fa-long-arrow-right"></i></div>
+                        </div>
+                        <!--  carousel end-->
+                        <!-- portfolio end -->
+                        <a href="{% url 'rooms:list' %}" class="btn    color-bg">Voir plus<i class="fas fa-caret-right"></i></a>
+                    </section>
+                   
+                    <section>
+                        <div class="container">
+                            <div class="section-title">
+                                <div class="section-title-separator"><span></span></div>
+                                <h2>Pourquoi nous choisir</h2>
+                                <span class="section-separator"></span>
+                            </div>
+                            <!-- -->
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <!-- process-item-->
+                                    <div class="process-item big-pad-pr-item">
+                                        <span class="process-count"> </span>
+                                        <div class="time-line-icon"><i class="fal fa-headset"></i></div>
+                                        <h4><a href="#"> Support client 24/7</a></h4>
+                                        <p>Si vous avez besoin d'aide lors de vos déplacements ou hébergements, contactez-nous au +228 93 71 61 16.</p>
+                                    </div>
+                                    <!-- process-item end -->
+                                </div>
+                                <div class="col-md-4">
+                                    <!-- process-item-->
+                                    <div class="process-item big-pad-pr-item">
+                                        <span class="process-count"> </span>
+                                        <div class="time-line-icon"><i class="fal fa-gift"></i></div>
+                                        <h4> <a href="#">Remboursement Garantie</a></h4>
+                                        <p>Les hôtes sont protégés contre les dommages-intérêts en cas d'insatisfaction.</p>
+                                    </div>
+                                    <!-- process-item end -->                                
+                                </div>
+                                <div class="col-md-4">
+                                    <!-- process-item-->
+                                    <div class="process-item big-pad-pr-item nodecpre">
+                                        <span class="process-count"> </span>
+                                        <div class="time-line-icon"><i class="fal fa-credit-card"></i></div>
+                                        <h4><a href="#"> Sécurité Garantie</a></h4>
+                                        <p>Nous visons à construire une communauté de confiance et de sécurité.</p>
+                                    </div>
+                                    <!-- process-item end -->                                
+                                </div>
+                            </div>
+                            <!--process-wrap   end-->
+                            <div class=" single-facts fl-wrap mar-top">
+                                <!-- inline-facts -->
+                                <div class="inline-facts-wrap">
+                                    <div class="inline-facts">
+                                        <i class="fal fa-users"></i>
+                                        <div class="milestone-counter">
+                                            <div class="stats animaper">
+                                                <div class="num" data-content="0" data-num="254">154</div>
+                                            </div>
+                                        </div>
+                                        <h6>Nouveaux visiteurs chaque semaine</h6>
+                                    </div>
+                                </div>
+                                <!-- inline-facts end -->
+                                <!-- inline-facts  -->
+                                <div class="inline-facts-wrap">
+                                    <div class="inline-facts">
+                                        <i class="fal fa-thumbs-up"></i>
+                                        <div class="milestone-counter">
+                                            <div class="stats animaper">
+                                                <div class="num" data-content="0" data-num="121">121</div>
+                                            </div>
+                                        </div>
+                                        <h6>Clients satisfaits chaque année</h6>
+                                    </div>
+                                </div>
+                                <!-- inline-facts end -->
+                                <!-- inline-facts  -->
+                                <div class="inline-facts-wrap">
+                                    <div class="inline-facts">
+                                        <i class="fal fa-award"></i>
+                                        <div class="milestone-counter">
+                                            <div class="stats animaper">
+                                                <div class="num" data-content="0" data-num="172">172</div>
+                                            </div>
+                                        </div>
+                                        <h6>A remporté des prix</h6>
+                                    </div>
+                                </div>
+                                <!-- inline-facts end -->
+                                <!-- inline-facts  -->
+                                <div class="inline-facts-wrap">
+                                    <div class="inline-facts">
+                                        <i class="fal fa-hotel"></i>
+                                        <div class="milestone-counter">
+                                            <div class="stats animaper">
+                                                <div class="num" data-content="0" data-num="732">732</div>
+                                            </div>
+                                        </div>
+                                        <h6>Nouvelle annonce chaque semaine</h6>
+                                    </div>
+                                </div>
+                                <!-- inline-facts end -->
+                            </div>
+                        </div>
+                    </section>
+                    <!-- section end -->
+                    
+                    <!--section -->
+                    <section>
+                        <div class="container">
+                            <div class="section-title">
+                                <div class="section-title-separator"><span></span></div>
+                                <h2>Témoignages</h2>
+                                <span class="section-separator"></span>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <!--slider-carousel-wrap -->
+                        <div class="slider-carousel-wrap text-carousel-wrap fl-wrap">
+                            <div class="swiper-button-prev sw-btn"><i class="fa fa-long-arrow-left"></i></div>
+                            <div class="swiper-button-next sw-btn"><i class="fa fa-long-arrow-right"></i></div>
+                            <div class="text-carousel single-carousel fl-wrap">
+                                <!--slick-item -->
+                                <div class="slick-item">
+                                    <div class="text-carousel-item">
+                                        <div class="popup-avatar"><img src="{% static 'images/avatar/1.jpg' %}" alt=""></div>
+                                        <div class="listing-rating card-popup-rainingvis" data-starrating2="5"> </div>
+                                        <div class="review-owner fl-wrap">Milka Antony  - <span>Client heureux</span></div>
+                                        <p> "In ut odio libero, at vulputate urna. Nulla tristique mi a massa convallis cursus. Nulla eu mi magna. Etiam suscipit commodo gravida. Lorem ipsum dolor sit amet, conse ctetuer adipiscing elit, sed diam nonu mmy nibh euismod tincidunt ut laoreet dolore magna aliquam erat."</p>
+                                        <a href="#" class="testim-link">Via Facebook</a>
+                                    </div>
+                                </div>
+                                <!--slick-item end -->
+                                <!--slick-item -->
+                                <div class="slick-item">
+                                    <div class="text-carousel-item">
+                                        <div class="popup-avatar"><img src="{% static 'images/avatar/1.jpg' %}" alt=""></div>
+                                        <div class="listing-rating card-popup-rainingvis" data-starrating2="4"> </div>
+                                        <div class="review-owner fl-wrap">Milka Antony  - <span>Client heureux</span></div>
+                                        <p> "In ut odio libero, at vulputate urna. Nulla tristique mi a massa convallis cursus. Nulla eu mi magna. Etiam suscipit commodo gravida. Lorem ipsum dolor sit amet, conse ctetuer adipiscing elit, sed diam nonu mmy nibh euismod tincidunt ut laoreet dolore magna aliquam erat."</p>
+                                        <a href="#" class="testim-link">Via Facebook</a>
+                                    </div>
+                                </div>
+                                <!--slick-item end -->
+                                <!--slick-item -->
+                                <div class="slick-item">
+                                    <div class="text-carousel-item">
+                                        <div class="popup-avatar"><img src="{% static 'images/avatar/1.jpg' %}" alt=""></div>
+                                        <div class="listing-rating card-popup-rainingvis" data-starrating2="5"> </div>
+                                        <div class="review-owner fl-wrap">Milka Antony  - <span>Client heureux</span></div>
+                                        <p> "In ut odio libero, at vulputate urna. Nulla tristique mi a massa convallis cursus. Nulla eu mi magna. Etiam suscipit commodo gravida. Lorem ipsum dolor sit amet, conse ctetuer adipiscing elit, sed diam nonu mmy nibh euismod tincidunt ut laoreet dolore magna aliquam erat."</p>
+                                        <a href="#" class="testim-link">Via Facebook</a>
+                                    </div>
+                                </div>
+                                <!--slick-item end -->
+                                <!--slick-item -->
+                                <div class="slick-item">
+                                    <div class="text-carousel-item">
+                                        <div class="popup-avatar"><img src="{% static 'images/avatar/1.jpg' %}" alt=""></div>
+                                        <div class="listing-rating card-popup-rainingvis" data-starrating2="5"> </div>
+                                        <div class="review-owner fl-wrap">Milka Antony  - <span>Client heureux</span></div>
+                                        <p> "In ut odio libero, at vulputate urna. Nulla tristique mi a massa convallis cursus. Nulla eu mi magna. Etiam suscipit commodo gravida. Lorem ipsum dolor sit amet, conse ctetuer adipiscing elit, sed diam nonu mmy nibh euismod tincidunt ut laoreet dolore magna aliquam erat."</p>
+                                        <a href="#" class="testim-link">Via Facebook</a>
+                                    </div>
+                                </div>
+                                <!--slick-item end -->
+                            </div>
+                        </div>
+                        <!--slider-carousel-wrap end-->
+                    </section>
+                    <!-- section end-->
+                  
+                    <!--section -->                       
+                  
+                </div>
+                <!-- content end-->
+            </div>
+            <!--wrapper end -->
+            
+            
+            <!--footer -->
+            <footer class="main-footer">
+                <!--subscribe-wrap-->
+                <div class="subscribe-wrap color-bg  fl-wrap">
+                    <div class="container">
+                        <div class="sp-bg"> </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="subscribe-header">
+                                    <h3>S'abonner</h3>
+                                    <p>Vous voulez être informé lorsque nous lançons un nouveau modèle ou une mise à jour.Inscrivez-vous et nous vous enverrons un nonification par e-mail.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-1"></div>
+                            <div class="col-md-5">
+                                <div class="footer-widget fl-wrap">
+                                    <div class="subscribe-widget fl-wrap">
+                                        <div class="subcribe-form">
+                                            <form id="subscribe">
+                                                <input class="enteremail fl-wrap" name="email" id="subscribe-email" placeholder="Entrer votre Email" spellcheck="false" type="text">
+                                                <button type="submit" id="subscribe-button" class="subscribe-button"><i class="fas fa-rss-square"></i> S'abonner</button>
+                                                <label for="subscribe-email" class="subscribe-message"></label>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="wave-bg"></div>
+                </div>
+                <!--subscribe-wrap end -->
+                {% endblock %}
+                <!--footer-inner-->
+                <div class="footer-inner">
+                    <div class="container">
+                        <!--footer-fw-widget-->
+                        <div class="footer-fw-widget fl-wrap">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="footer-carousel-title">
+                                        Nos partenaires
+                                    </div>
+                                </div>
+                                <div class="col-md-9">
+                                    <!--footer-carousel-wrap-->
+                                    <div class="footer-carousel-wrap fl-wrap">
+                                        <div class="footer-carousel fl-wrap">
+                                            <!--footer-carousel-item-->
+                                            <div class="footer-carousel-item">
+                                                <a href="#"><img src="{% static 'images/partners/1' %}" alt=""></a>
+                                            </div>
+                                            <!--footer-carousel-item end-->
+                                            <!--footer-carousel-item-->
+                                            <div class="footer-carousel-item">
+                                                <a href="#"><img src="{% static 'images/partners/1' %}" alt=""></a>
+                                            </div>
+                                            <!--footer-carousel-item end-->                             
+                                            <!--footer-carousel-item-->
+                                            <div class="footer-carousel-item">
+                                                <a href="#"><img src="{% static 'images/partners/1' %}" alt=""></a>
+                                            </div>
+                                            <!--footer-carousel-item end-->
+                                            <!--footer-carousel-item-->
+                                            <div class="footer-carousel-item">
+                                                <a href="#"><img src="{% static 'images/partners/1' %}" alt=""></a>
+                                            </div>
+                                            <!--footer-carousel-item end-->      
+                                            <!--footer-carousel-item-->
+                                            <div class="footer-carousel-item">
+                                                <a href="#"><img src="{% static 'images/partners/1' %}" alt=""></a>
+                                            </div>
+                                            <!--footer-carousel-item end-->
+                                            <!--footer-carousel-item-->
+                                            <div class="footer-carousel-item">
+                                                <a href="#"><img src="{% static 'images/partners/1' %}" alt=""></a>
+                                            </div>
+                                            <!--footer-carousel-item end-->                                     
+                                        </div>
+                                        <div class="fc-cont  fc-cont-prev"><i class="fal fa-angle-left"></i></div>
+                                        <div class="fc-cont  fc-cont-next"><i class="fal fa-angle-right"></i></div>
+                                    </div>
+                                    <!--footer-carousel-wrap end-->
+                                </div>
+                            </div>
+                        </div>
+                        <!--footer-fw-widget end-->
+                        <div class="row">
+                            <!--footer-widget -->
+                            <div class="col-md-4">
+                                <div class="footer-widget fl-wrap">
+                                    <h3>À propos de nous</h3>
+                                    <div class="footer-contacts-widget fl-wrap">
+                                        <p>sank-luxury est une entreprise créee pour mettre en relation les voyageurs avec des expériences d'hébergement uniques et personnalisées. Nous permettons aux visiteurs de parcourir, de découvrir et de réserver de divers types d'hébergements, tels que nos maisons, nos appartements et des séjours atypiques.</p>
+                                        <ul  class="footer-contacts fl-wrap">
+                                            <li><span><i class="fal fa-envelope"></i> mail :</span><a href="#" target="_blank">sank-luxury@gmail.com</a></li>
+                                            <li> <span><i class="fal fa-map-marker-alt"></i> Adresse :</span><a href="#" target="_blank">Agoè Sogbossito, Carrefour KPOGLI, Lomé-Togo</a></li>
+                                            <li><span><i class="fal fa-phone"></i> Téléphone :</span><a href="#">+228 93 71 61 16 / 99 80 46 54</a></li>
+                                        </ul>
+                                        <div class="footer-social">
+                                            <span>Trouve nous : </span>
+                                            <ul>
+                                                <li><a href="https://www.facebook.com/profile.php?id=61555214685798" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                                                <li><a href="https://x.com/sank3?t=Dicfdfc5f3zDa6U1r4PGcA&s=09" target="_blank"><i class="fab fa-twitter"></i></a></li>
+                                                <li><a href="https://www.instagram.com/sank3?utm_source=qr&igsh=eGIyZTE2amk0aW1h" target="_blank"><i class="fab fa-instagram"></i></a></li>
+                                                <li><a href="https://www.tiktok.com/@sank7?_t=8j3ES1ObbXy&_r=1" target="_blank"><i class="fab fa-brands:tiktok"></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--footer-widget end-->
+                            <!--footer-widget -->
+                            <div class="col-md-4">
+                                <div class="footer-widget fl-wrap">
+                                    <h3>Nos dernières publications</h3>
+                                    <div class="widget-posts fl-wrap">
+                                        <ul>
+                                            <li class="clearfix">
+                                                <a href="#"  class="widget-posts-img"><img src="{% static 'images/all/1.jpg' %}" class="respimg" alt=""></a>
+                                                <div class="widget-posts-descr">
+                                                    <a href="#" title="">Vivamus dapibus rutrum</a>
+                                                    <span class="widget-posts-date"> 21 Mar 09.05 </span>
+                                                </div>
+                                            </li>
+                                            <li class="clearfix">
+                                                <a href="#"  class="widget-posts-img"><img src="{% static 'images/all/1.jpg' %}" class="respimg" alt=""></a>
+                                                <div class="widget-posts-descr">
+                                                    <a href="#" title=""> In hac habitasse platea</a>
+                                                    <span class="widget-posts-date"> 7 Mar 18.21 </span>
+                                                </div>
+                                            </li>
+                                            <li class="clearfix">
+                                                <a href="#"  class="widget-posts-img"><img src="{% static 'images/all/1.jpg' %}" class="respimg" alt=""></a>
+                                                <div class="widget-posts-descr">
+                                                    <a href="#" title="">Tortor tempor in porta</a>
+                                                    <span class="widget-posts-date"> 7 Mar 16.42 </span>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--footer-widget end-->
+                            <!-- footer-widget  -->
+                            <div class="col-md-4">
+                                <div class="footer-widget fl-wrap ">
+                                    <h3>Liens Utils</h3>
+                                        <ul class="footer-list fl-wrap">
+                                            <li><a href="{% url 'main:about' %}">Au sujet de notre compagnie</a></li>
+                                            <li><a href="{% url 'main:blog' %}">Nos dernières nouvelles</a></li>
+                                            <li><a href="{% url 'main:help' %}">Centre d'aide</a></li>
+                                            <li><a href="{% url 'main:contacts' %}">contacts</a></li>											
+                                        </ul>
+										
+                                </div>
+                            </div>
+                            <!-- footer-widget end-->
+                        </div>
+                        <div class="clearfix"></div>
+                        <!--footer-widget -->
+                        <div class="footer-widget">
+                            <div class="row">
+                                <div class="col-md-4"><a class="contact-btn color-bg" href="{% url 'main:contacts' %}">Entrer en contact<i class="fal fa-envelope"></i></a></div>
+                                <div class="col-md-8">
+                                    <div class="customer-support-widget fl-wrap">
+                                        <h4>Service client : </h4>
+                                        <a href="tel:+22893918626" class="cs-mumber">(228) 93 71 61 16 / 99 80 46 54 / 91 59 82 64</a>
+                                        <a href="tel:+22893918626" class="cs-mumber-button color2-bg">Appelle maintenant <i class="far fa-phone-volume"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--footer-widget end -->
+                    </div>
+                </div>
+                <!--footer-inner end -->
+                <div class="footer-bg">
+                </div>
+                <!--sub-footer-->
+                <div class="sub-footer">
+                    <div class="container">
+                        <div class="copyright"> &#169; sank 2024 .  All rights reserved.</div>
+                        <div class="subfooter-lang">
+                            <div class="subfooter-show-lang"><span>Eng</span><i class="fa fa-caret-up"></i></div>
+                            <ul class="subfooter-lang-tooltip">
+                                <li><a href="#">French</a></li>
+                            </ul>
+                        </div>
+                        <div class="subfooter-nav">
+                            <ul>
+                                <li><a href="{% url 'main:term_condition' %}">Conditions d'utilisation</a></li>
+                                <li><a href="{% url 'main:police_prive' %}">politique de confidentialité</a></li>
+                                <li><a href="#">Blog</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--sub-footer end -->
+            </footer>
+            <!--footer end -->
+            <!--map-modal -->
+            <div class="map-modal-wrap">
+                <div class="map-modal-wrap-overlay"></div>
+                <div class="map-modal-item">
+                    <div class="map-modal-container fl-wrap">
+                        <div class="map-modal fl-wrap">
+                            <div id="singleMap" data-latitude="40.7" data-longitude="-73.1"></div>
+                        </div>
+                        <h3><i class="fal fa-location-arrow"></i><a href="#">Titre de l'hôtel</a></h3>
+                        <input id="pac-input" class="controls fl-wrap controls-mapwn" type="text" placeholder="What Nearby ?   Bar , Gym , Restaurant ">
+                        <div class="map-modal-close"><i class="fal fa-times"></i></div>
+                    </div>
+                </div>
+            </div>
+            <!--map-modal end -->            
+            
+            <a class="to-top"><i class="fas fa-caret-up"></i></a>
+        </div>
+        <!-- Main end -->
+        <!--=============== scripts  ===============-->
+        <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/plugins.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/scripts.js' %}"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=YOURAPIKEYHERE&libraries=places&callback=initAutocomplete"></script> 
+        <script type="text/javascript" src="{% static 'js/map-single.js' %}"></script>         
+    </body>
+</html>
