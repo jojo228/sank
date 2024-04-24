@@ -1,7 +1,6 @@
 from django.utils import timezone
 from django.db import models
 from django.urls import reverse
-from django_countries.fields import CountryField
 from main import models as main_models
 from calendar import Calendar
 
@@ -32,7 +31,7 @@ class Facility(AbstractItem):
         verbose_name_plural = "Facilities"
 
 
-class HouseRule(AbstractItem):
+class Reglement(AbstractItem):
     class Meta:
         verbose_name = "House Rule"
 
@@ -47,44 +46,25 @@ class Photo(main_models.TimeStampedModel):
 
 
 class Room(main_models.TimeStampedModel):
-
-    CHECK_IN = (
-        ("morning", "Morning"),
-        ("afternoon", "Afternoon"),
-        ("next day", "Next Day"),
-        ("check-in", "Immediately upon Check In "),
-    )
-    CHECK_OUT = (
-        ("morning", "Morning"),
-        ("afternoon", "Afternoon"),
-        ("next day", "Next Day"),
-        ("check-in", "Immediately upon Check In "),
-    )
-
-    name = models.CharField(max_length=140)
+    nom = models.CharField(max_length=140)
     description = models.TextField()
-    country = CountryField()
-    city = models.CharField(max_length=80)
-    price = models.IntegerField()
-    address = models.CharField(max_length=140)
-    guests = models.IntegerField(help_text="How many people will be staying?")
-    beds = models.IntegerField()
-    bedrooms = models.IntegerField()
-    baths = models.IntegerField()
-    check_in = models.CharField(max_length=20, choices=CHECK_IN)
-    check_out = models.CharField(max_length=20, choices=CHECK_OUT)
-    instant_book = models.BooleanField(default=False)
+    prix_par_nuit = models.IntegerField()
+    prix_par_mois = models.IntegerField()
+    adresse = models.CharField(max_length=200)
+    nombre_de_lits = models.IntegerField()
+    nombre_de_chambres = models.IntegerField()
+    nombre_de_douche = models.IntegerField()
     room_type = models.ForeignKey(
         "RoomType", related_name="rooms", on_delete=models.SET_NULL, null=True
     )
-    amenities = models.ManyToManyField("Amenity", related_name="rooms", blank=True,)
-    facilities = models.ManyToManyField("Facility", related_name="rooms", blank=True)
-    house_rules = models.ManyToManyField("HouseRule", related_name="rooms", blank=True)
+    agrement = models.ManyToManyField("Amenity", related_name="rooms", blank=True,)
+    facilités = models.ManyToManyField("Facility", related_name="rooms", blank=True)
+    reglements = models.ManyToManyField("Reglement", related_name="rooms", blank=True)
 
     video = models.FileField(upload_to="room_videos", blank=True)
 
     def __str__(self):
-        return self.name
+        return self.nom
 
     def save(self, *args, **kwargs):
         self.city = str.capitalize(self.city)
@@ -113,16 +93,4 @@ class Room(main_models.TimeStampedModel):
         photos = self.photos.all()[1:5]
         return photos
 
-    def get_calendars(self):
-        now = timezone.now()
-        this_year = now.year
-        this_month = now.month
-        next_month = this_month + 1
-        next_year = this_year
-        if this_month == 12:
-            next_month = 1
-            next_year = this_year + 1
-        this_month_cal = Calendar(this_year, this_month)
-        next_month_cal = Calendar(next_year, next_month)
-
-        return [this_month_cal, next_month_cal]
+   

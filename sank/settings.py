@@ -197,15 +197,7 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 
-
-
-
-
-LOGIN_REDIRECT_URL = "main:home"
-
-
 # Locale
 LOCALE_PATHS = (os.path.join(BASE_DIR, "locale"),)
 
-
-
+SITE_ID = 2

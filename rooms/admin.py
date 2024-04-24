@@ -3,7 +3,7 @@ from django.utils.html import mark_safe
 from . import models
 
 
-@admin.register(models.RoomType, models.Facility, models.Amenity, models.HouseRule)
+@admin.register(models.RoomType, models.Facility, models.Amenity, models.Reglement)
 class ItemAdmin(admin.ModelAdmin):
 
     """ Item Admin Definition """
@@ -31,60 +31,48 @@ class RoomAdmin(admin.ModelAdmin):
     fieldsets = (
         (
             "Basic Info",
-            {"fields": ("name", "room_type", "description", "country", "city", "address", "price")},
+            {"fields": ("nom", "room_type", "description", "adresse", "prix_par_nuit", "prix_par_mois")},
         ),
-        ("Times", {"fields": ("check_in", "check_out", "instant_book")}),
-        ("Spaces", {"fields": ("guests", "beds", "bedrooms", "baths")}),
+        ("Spaces", {"fields": ("nombre_de_lits", "nombre_de_chambres", "nombre_de_douche")}),
         (
             "More About the Space",
             {
                 "classes": ("collapse",),
-                "fields": ("amenities", "facilities", "house_rules"),
+                "fields": ("agrement", "facilités", "reglements"),
             },
         ),
-        ("Last Details", {"fields": ("host",)}),
     )
 
-    ordering = ("name", "price", "bedrooms")
+    ordering = ("nom", "prix_par_nuit", "prix_par_mois", "nombre_de_chambres")
 
     list_display = (
-        "name",
-        "country",
-        "city",
-        "price",
-        "guests",
-        "beds",
-        "bedrooms",
-        "baths",
-        "check_in",
-        "check_out",
-        "instant_book",
+        "nom",
+        "prix_par_nuit",
+        "prix_par_mois",
+        "nombre_de_lits",
+        "nombre_de_chambres",
+        "nombre_de_douche",
         "count_amenities",
         "count_photos",
         # "total_rating",
     )
 
     list_filter = (
-        "instant_book",
         "room_type",
-        "amenities",
-        "facilities",
-        "house_rules",
-        "city",
-        "country",
+        "agrement",
+        "facilités",
+        "reglements",
     )
 
-    search_fields = ("=city", "^host__username")
-
     filter_horizontal = (
-        "amenities",
-        "facilities",
-        "house_rules",
+        "agrement",
+        "facilités",
+        "reglements",
     )
 
 
     def count_amenities(self, obj):
-        return obj.amenities.count()
+        return obj.agrement.count()
 
     def count_photos(self, obj):
         return obj.photos.count()

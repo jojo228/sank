@@ -5,24 +5,21 @@ from . import models
 
 class SearchForm(forms.Form):
 
-    city = forms.CharField(initial="Anywhere")
-    country = CountryField(default="TG").formfield()
+   
     room_type = forms.ModelChoiceField(
         required=False, empty_label="Any kind", queryset=models.RoomType.objects.all()
     )
-    price = forms.IntegerField(required=False)
-    guests = forms.IntegerField(required=False)
-    bedrooms = forms.IntegerField(required=False)
-    beds = forms.IntegerField(required=False)
-    baths = forms.IntegerField(required=False)
-    instant_book = forms.BooleanField(required=False)
-    superhost = forms.BooleanField(required=False)
-    amenities = forms.ModelMultipleChoiceField(
+    prix_par_nuit = forms.IntegerField(required=False)
+    prix_par_mois = forms.IntegerField(required=False)
+    nombre_de_chambres = forms.IntegerField(required=False)
+    nombre_de_lits = forms.IntegerField(required=False)
+    nombre_de_douche = forms.IntegerField(required=False)
+    agrement = forms.ModelMultipleChoiceField(
         required=False,
         queryset=models.Amenity.objects.all(),
         widget=forms.CheckboxSelectMultiple,
     )
-    facilities = forms.ModelMultipleChoiceField(
+    facilités = forms.ModelMultipleChoiceField(
         required=False,
         queryset=models.Facility.objects.all(),
         widget=forms.CheckboxSelectMultiple,
@@ -51,44 +48,34 @@ class CreateRoomForm(forms.ModelForm):
     class Meta:
         model = models.Room
         fields = (
-            "name",
+            "nom",
             "description",
-            "country",
-            "city",
-            "price",
-            "address",
-            "guests",
-            "beds",
-            "bedrooms",
-            "baths",
-            "check_in",
-            "check_out",
-            "instant_book",
+            "prix_par_nuit",
+            "prix_par_mois",
+            "adresse",
+            "nombre_de_lits",
+            "nombre_de_chambres",
+            "nombre_de_douche",
             "room_type",
-            "amenities",
-            "facilities",
-            "house_rules",
+            "agrement",
+            "facilités",
+            "reglements",
             "video",
         )
         labels = {
-            "name": "Titre",
+            "nom": "Titre",
             "description": "Description",
-            "price": "Prix par nuit (xof)",
-            "address": "Adresse",
-            "guests": "Nombre d'invités autorisés",
-            "amenities": "Commodités",
-            "facilities": "Installations",
-            "house_rules": "règles de la maison",
-            "city": "ville",
-            "beds": "Nombre de lits",
-            "bedrooms": "chambres",
-            "check_in": "Période d'entrée",
-            "check_out": "Période de sortie",
+            "prix_par_nuit": "Prix par nuit (xof)",
+            "prix_par_mois": "Prix par mois (xof)",
+            "adresse": "Adresse",
+            "agrement": "Commodités",
+            "facilités": "Installations",
+            "reglements": "règles de la maison",
+            "nombre_de_lits": "Nombre de lits",
+            "nombre_de_chambres": "chambres",
             "room_type": "Type",
             "video": "Vidéo de presentation",
-            "country": "Pays",
-            "baths": "Douches",
-            "instant_book": "Réservation instantanée",
+            "nombre_de_douche": "Douches",
 
         }
 

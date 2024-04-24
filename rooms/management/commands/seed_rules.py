@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from rooms.models import HouseRule
+from rooms.models import Reglement
 
 
 class Command(BaseCommand):
@@ -13,7 +13,7 @@ class Command(BaseCommand):
             "Do not go out after 12:00",
         ]
         for h in house_rules:
-            HouseRule.objects.create(name=h)
+            Reglement.objects.create(name=h)
         self.stdout.write(
             self.style.SUCCESS(f"{len(house_rules)} house rules created!")
         )
