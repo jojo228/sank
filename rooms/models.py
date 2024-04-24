@@ -61,7 +61,7 @@ class Room(main_models.TimeStampedModel):
     facilités = models.ManyToManyField("Facility", related_name="rooms", blank=True)
     reglements = models.ManyToManyField("Reglement", related_name="rooms", blank=True)
 
-    video = models.FileField(upload_to="room_videos", blank=True)
+    video = models.URLField(blank=True, null=True)
 
     def __str__(self):
         return self.nom

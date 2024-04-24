@@ -41,22 +41,19 @@
                             <a href="{% url 'main:home' %}"><img src="" alt="">SANK-LUXURY</a>
                         </div>
                         
-                        <a href="">            
-                            <div class="show-reg-form"><i class="fa fa-sign-in"></i>Se connecter</div>
-                        </a>    
                         <div class="lang-wrap">
                             <div class="show-lang"><img src="{% static 'images/lan/2.png' %}" alt=""> <span>Fr</span><i class="fa fa-caret-down"></i></div>
                             <ul class="lang-tooltip green-bg">
                                 <li><a href="#"><img src="{% static 'images/lan/1.png' %}" alt=""> Eng</a></li>
                             </ul>
                         </div>
-                        <!-- <div class="currency-wrap">
+                        <div class="currency-wrap">
                             <div class="show-currency-tooltip"><i class="fas fa-dollar-sign"></i> <span>XOF <i class="fa fa-caret-down"></i> </span></div>
                             <ul class="currency-tooltip">
                                 <li><a href="#"><i class="far fa-euro-sign"></i> USD</a></li>
                                
                             </ul>
-                        </div> -->
+                        </div>
                     </div>
                 </div>
                 <!-- header-top end-->
@@ -70,11 +67,7 @@
                             <div class="header-user-name">
                                 <span><img src="{% static 'images/avatar/1.jpg' %}" alt=""></span>
                             </div>
-                            <ul>
-                                <li><a href=""> Profil</a></li>
-                                <li><a href="{% url 'rooms:create' %}"> Publier</a></li>
-                                <li><a href="">Se deconnecter</a></li>
-                            </ul>
+                            
                         </div>
                         <div class="home-btn"><a href="{% url 'main:home' %}"><i class="fas fa-home"></i></a></div>
                         <!-- nav-button-wrap-->
@@ -306,38 +299,30 @@
                                         <article class="geodir-category-listing fl-wrap">
                                             <div class="geodir-category-img">
                                                 <a href="{% url 'rooms:detail' room.id %}"><img src="{{room.first_photo}}" alt=""></a>
-                                                <div class="listing-avatar"><a href="{% url 'main:author-single' %}"><img src="{% if room.host.avatar %} {{room.host.avatar.url}} {% else %} {% static 'images/avatar/1.jpg' %} {% endif %}" alt=""></a>
-                                                    <span class="avatar-tooltip">Ajouté par  <strong>{{room.host}}</strong></span>
-                                                </div>
-                                                <!-- <div class="geodir-category-opt">
-                                                    <div class="listing-rating card-popup-rainingvis" data-starrating2="5"></div>
-                                                    <div class="rate-class-name">
-                                                        <div class="score"><strong>Very Good</strong>27 Reviews </div>
-                                                        <span>5.0</span>                                             
-                                                    </div>
-                                                </div> -->
+                                                
+                                               
                                             </div>
                                             <div class="geodir-category-content fl-wrap title-sin_item">
                                                 <div class="geodir-category-content-title fl-wrap">
                                                     <div class="geodir-category-content-title-item">
-                                                        <h3 class="title-sin_map"><a href="{% url 'rooms:detail' room.id %}">{{room.name}}</a></h3>
-                                                        <div class="geodir-category-location fl-wrap"><a href="#" class="map-item"><i class="fas fa-map-marker-alt"></i> {{room.address}}</a></div>
+                                                        <h3 class="title-sin_map"><a href="{% url 'rooms:detail' room.id %}">{{room.nom}}</a></h3>
+                                                        <div class="geodir-category-location fl-wrap"><a href="{% url 'rooms:detail' room.id %}" class="map-item"><i class="fas fa-map-marker-alt"></i> {{room.adresse}}</a></div>
                                                     </div>
                                                 </div>
-                                                <p>{{room.description}}</p>
-                                                <!-- <ul class="facilities-list fl-wrap">
+                                                <p>{{room.description|truncatewords:10}}</p>
+                                                <ul class="facilities-list fl-wrap">
                                                     <li><i class="fal fa-wifi"></i><span>Free WiFi</span></li>
                                                     <li><i class="fal fa-parking"></i><span>Parking</span></li>
                                                     <li><i class="fal fa-smoking-ban"></i><span>Non-smoking Rooms</span></li>
                                                     <li><i class="fal fa-utensils"></i><span> Restaurant</span></li>
-                                                </ul> -->
+                                                </ul>
                                                 <div class="geodir-category-footer fl-wrap">
-                                                    <!-- <div class="geodir-category-price">Prix / nuit <span> <br>  {{room.price}} F</span></div> -->
-                                                    <!-- <div class="geodir-opt-list">
-                                                        <a href="#" class="single-map-item" data-newlatitude="40.72956781" data-newlongitude="-73.99726866"><i class="fal fa-map-marker-alt"></i><span class="geodir-opt-tooltip">On the map</span></a>
-                                                        <a href="#" class="geodir-js-favorite"><i class="fal fa-heart"></i><span class="geodir-opt-tooltip">Save</span></a>
-                                                        <a href="#" class="geodir-js-booking"><i class="fal fa-exchange"></i><span class="geodir-opt-tooltip">Find Directions</span></a>
-                                                    </div> -->
+                                                    <div class="geodir-category-price">Prix / nuit <span> <br>  {{room.prix_par_nuit}} F</span></div>
+                                                    
+                                                    <div class="geodir-opt-list">
+                                                        <div class="geodir-category-price">Prix / mois <span> <br>  {{room.prix_par_mois}} F</span></div>
+                                                        
+                                                    </div>
                                                 </div>
                                             </div>
                                         </article>
