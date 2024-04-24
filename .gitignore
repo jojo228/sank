@@ -77,7 +77,7 @@ pip-delete-this-directory.txt
 db.sqlite3-journal
 db.sqlite3
 
-migrations
 /media
 settings.py
 **/settings.py
+.env
