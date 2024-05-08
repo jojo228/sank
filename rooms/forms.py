@@ -10,6 +10,7 @@ class SearchForm(forms.Form):
         required=False, empty_label="Any kind", queryset=models.RoomType.objects.all()
     )
     prix_par_nuit = forms.IntegerField(required=False)
+    prix_par_semaine = forms.IntegerField(required=False)
     prix_par_mois = forms.IntegerField(required=False)
     nombre_de_chambres = forms.IntegerField(required=False)
     nombre_de_lits = forms.IntegerField(required=False)
@@ -51,6 +52,7 @@ class CreateRoomForm(forms.ModelForm):
             "nom",
             "description",
             "prix_par_nuit",
+            "prix_par_semaine",
             "prix_par_mois",
             "adresse",
             "nombre_de_lits",
@@ -66,6 +68,7 @@ class CreateRoomForm(forms.ModelForm):
             "nom": "Titre",
             "description": "Description",
             "prix_par_nuit": "Prix par nuit (xof)",
+            "prix_par_semaine": "Prix par semaine (xof)",
             "prix_par_mois": "Prix par mois (xof)",
             "adresse": "Adresse",
             "agrement": "Commodités",

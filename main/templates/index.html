@@ -1,4 +1,5 @@
 {% load static %}
+{% load humanize %}
 <!DOCTYPE HTML>
 <html lang="en">
     <head>
@@ -38,7 +39,7 @@
                 <div class="header-top fl-wrap">
                     <div class="container">
                         <div class="logo-holder">
-                            <a href="{% url 'main:home' %}"><img src="" alt="">SANK-LUXURY</a>
+                            <a href="{% url 'main:home' %}"><img src="" alt="">SANK-LUXURY APPARTEMENTS</a>
                         </div>
                         
                         <div class="lang-wrap">
@@ -166,7 +167,7 @@
                             <div class="container">
                                 <div class="home-intro">
                                     <div class="section-title-separator"><span></span></div>
-                                    <h2>SANK-LUXURY</h2>
+                                    <h2>SANK-LUXURY APPARTEMENTS</h2>
                                     <span class="section-separator"></span>                                    
                                     <h3>Découvrez toute une gamme d'appartements de luxe</h3>
                                 </div>
@@ -316,14 +317,11 @@
                                                     <li><i class="fal fa-smoking-ban"></i><span>Non-smoking Rooms</span></li>
                                                     <li><i class="fal fa-utensils"></i><span> Restaurant</span></li>
                                                 </ul>
-                                                <div class="geodir-category-footer fl-wrap">
-                                                    <div class="geodir-category-price">Prix / nuit <span> <br>  {{room.prix_par_nuit}} F</span></div>
-                                                    
-                                                    <div class="geodir-opt-list">
-                                                        <div class="geodir-category-price">Prix / mois <span> <br>  {{room.prix_par_mois}} F</span></div>
-                                                        
-                                                    </div>
-                                                </div>
+                                                <ul class="facilities-list fl-wrap">
+                                                    <div class="geodir-category-price" style="font-size: 65%;">Prix/nuit<span> <br>  {{room.prix_par_nuit|intcomma}} F</span></div>
+                                                    <div class="geodir-category-price" style="font-size: 65%;">Prix/semaine<span> <br>  {{room.prix_par_semaine|intcomma}} F</span></div>
+                                                    <div class="geodir-category-price" style="font-size: 65%;">Prix/mois<span> <br>  {{room.prix_par_mois|intcomma}} F</span></div>
+                                                </ul>
                                             </div>
                                         </article>
                                     </div>
@@ -611,7 +609,7 @@
                                         <ul  class="footer-contacts fl-wrap">
                                             <li><span><i class="fal fa-envelope"></i> mail :</span><a href="#" target="_blank">sank-luxury@gmail.com</a></li>
                                             <li> <span><i class="fal fa-map-marker-alt"></i> Adresse :</span><a href="#" target="_blank">Agoè Sogbossito, Carrefour KPOGLI, Lomé-Togo</a></li>
-                                            <li><span><i class="fal fa-phone"></i> Téléphone :</span><a href="#">+228 93 71 61 16 / 99 80 46 54</a></li>
+                                            <li><span><i class="fal fa-phone"></i> Téléphone :</span><a href="#">+228 93 71 61 16 / 91 59 82 64 / <br> +1 (571) 577-0722</a></li>
                                         </ul>
                                         <div class="footer-social">
                                             <span>Trouve nous : </span>
@@ -681,8 +679,8 @@
                                 <div class="col-md-8">
                                     <div class="customer-support-widget fl-wrap">
                                         <h4>Service client : </h4>
-                                        <a href="tel:+22893918626" class="cs-mumber">(228) 93 71 61 16 / 99 80 46 54 / 91 59 82 64</a>
-                                        <a href="tel:+22893918626" class="cs-mumber-button color2-bg">Appelle maintenant <i class="far fa-phone-volume"></i></a>
+                                        <a href="tel:+22893716116" class="cs-mumber">(228) 93 71 61 16 / 91 59 82 64 / +1 (571) 577-0722</a>
+                                        <a href="tel:+22893716116" class="cs-mumber-button color2-bg">Appelle maintenant <i class="far fa-phone-volume"></i></a>
                                     </div>
                                 </div>
                             </div>

@@ -31,7 +31,7 @@ class RoomAdmin(admin.ModelAdmin):
     fieldsets = (
         (
             "Basic Info",
-            {"fields": ("nom", "room_type", "description", "adresse", "prix_par_nuit", "prix_par_mois", "video")},
+            {"fields": ("nom", "room_type", "description", "adresse", "prix_par_nuit", "prix_par_semaine", "prix_par_mois", "video")},
         ),
         ("Les espaces", {"fields": ("nombre_de_lits", "nombre_de_chambres", "nombre_de_douche")}),
         (
@@ -43,11 +43,12 @@ class RoomAdmin(admin.ModelAdmin):
         ),
     )
 
-    ordering = ("nom", "prix_par_nuit", "prix_par_mois", "nombre_de_chambres")
+    ordering = ("nom", "prix_par_nuit", "prix_par_semaine", "prix_par_mois", "nombre_de_chambres")
 
     list_display = (
         "nom",
         "prix_par_nuit",
+        "prix_par_semaine",
         "prix_par_mois",
         "nombre_de_lits",
         "nombre_de_chambres",

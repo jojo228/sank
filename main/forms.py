@@ -8,3 +8,5 @@ class SearchForm(forms.Form):
     check_in = forms.DateField(required=False)
     check_out = forms.DateField(required=False)
 
+    
+

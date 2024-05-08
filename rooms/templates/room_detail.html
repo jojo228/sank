@@ -1,6 +1,7 @@
 
 {% extends "index.html" %}
 {% load static %}
+{% load humanize %}
 {% block content %}
             <!--  wrapper  -->
             <div id="wrapper">
@@ -53,7 +54,7 @@
                                         <li><a href="#sec5">Commentaires</a></li>
                                     </ul>
                                 </nav>
-                                <a href="#" class="show-hidden-map">  <span>Sur la carte</span> <i class="fal fa-map-marked-alt"></i></a>
+                                <a href="#" class="show-hidden-map">  <span>Reserver</span> <i class="fal fa-paper-plane"></i></a>
                             </div>
                         </div>
                         <!--  scroll-nav-wrapper end  -->                    
@@ -74,10 +75,12 @@
                                                         <div class="listing-rating card-popup-rainingvis" data-starrating2="0">{{room.room_type}}</div>
                                                         <div class="geodir-category-location fl-wrap"><a href="#"><i class="fas fa-map-marker-alt"></i>{{room.adresse}}</a></div>
                                                     </div>
+                                                    <h3><b>NB:</b> Pour des reservations de plus d'une semaine, Caution = {{room.caution|intcomma}}</h3>
                                                 </div>
                                                 <div class="col-sm-5">
-                                                    <div class="list-single-hero-price fl-wrap">Nuité<span>{{room.prix_par_nuit}} XOF</span></div>
-                                                    <div class="list-single-hero-price fl-wrap">Mensuel<span>{{room.prix_par_mois}} XOF</span></div>
+                                                    <div class="list-single-hero-price fl-wrap">Nuité<span>{{room.prix_par_nuit|intcomma}} XOF</span></div>
+                                                    <div class="list-single-hero-price fl-wrap">Semaine<span>{{room.prix_par_semaine|intcomma}} XOF</span></div>
+                                                    <div class="list-single-hero-price fl-wrap">Mensuel<span>{{room.prix_par_mois|intcomma}} XOF</span></div>
                                                 </div>
                                             </div>
                                             <span class="fw-separator"></span>
