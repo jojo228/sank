@@ -12,7 +12,7 @@ from django.views.generic import (
     FormView,
 )
 from rooms.forms import CreatePhotoForm, CreateRoomForm
-from rooms.models import Room, Photo
+from rooms.models import Room, Photo, RoomType
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
 from django.shortcuts import render, redirect, reverse
@@ -77,6 +77,16 @@ class RoomListView(ListView):
     def get_context_data(self, **kwargs):
         context = super(RoomListView, self).get_context_data(**kwargs)
         return context
+
+
+
+def room_category(request, slug):
+    category = RoomType.objects.get(slug=slug)
+    room = Room.objects.filter(room_type=category)
+
+
+    return render(request, "room_category.html", locals())
+
 
 
 # DETAIL

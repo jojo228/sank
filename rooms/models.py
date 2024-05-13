@@ -15,8 +15,8 @@ class AbstractItem(main_models.TimeStampedModel):
         return self.name
     
 
-
 class RoomType(AbstractItem):
+    slug = models.SlugField(max_length=300, unique=True)
     class Meta:
         verbose_name = "Room Type"
 
