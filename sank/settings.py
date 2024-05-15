@@ -22,7 +22,7 @@ SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", get_random_secret_key())
 
 # SECURITY WARNING: don't run with debug turned on in production!
 #DEBUG = True
-DEBUG = os.getenv('DEBUG', 'False') == 'False'
+DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
 if not DEBUG:
     DEBUG_PROPAGATE_EXCEPTIONS = True
@@ -46,7 +46,7 @@ DJANGO_APPS = [
 ]
 
 THIRD_PARTY_APPS = [
-    "django_countries", "django_seed", "storages", "mathfilters"  
+    "django_countries", "django_seed", "storages",  
     ]
 
 
@@ -99,28 +99,28 @@ WSGI_APPLICATION = 'sank.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 
+#DATABASES = {
+#        "default": {
+#            "ENGINE": "django.db.backends.sqlite3",
+#            "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+#        }
+#    }
 DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
-        }
-    }
-# DATABASES = {
-#             'default': {
-#                 'ENGINE': os.getenv('DB_ENGINE'),
-#                 'NAME': os.getenv('DB_NAME'),
-#                 'USER': os.getenv('DB_USER'),
-#                 'PASSWORD': os.getenv('DB_PASSWORD'),
-#                 'HOST': os.getenv('DB_HOST'),
-#                 'PORT': os.getenv('DB_PORT'),
-#             }
-# }
+         'default': {
+             'ENGINE': os.getenv('DB_ENGINE'),
+             'NAME': os.getenv('DB_NAME'),
+             'USER': os.getenv('DB_USER'),
+             'PASSWORD': os.getenv('DB_PASSWORD'),
+             'HOST': os.getenv('DB_HOST'),
+             'PORT': os.getenv('DB_PORT'),
+         }
+     }
 
 #Session timeout config
 
-SESSION_EXPIRE_SECONDS = 3600  # 1 hour
+#SESSION_EXPIRE_SECONDS = 3600  # 1 hour
 
-SESSION_EXPIRE_AFTER_LAST_ACTIVITY = True
+#SESSION_EXPIRE_AFTER_LAST_ACTIVITY = True
 
 
 
@@ -163,9 +163,9 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+#STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 
-# STATIC_ROOT = os.path.join(BASE_DIR, "static/")
+STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 
 
 MEDIA_URL = '/media/'
@@ -197,4 +197,4 @@ AUTHENTICATION_BACKENDS = [
 # Locale
 LOCALE_PATHS = (os.path.join(BASE_DIR, "locale"),)
 
-SITE_ID = 2
+SITE_ID = 1

@@ -16,7 +16,6 @@ class AbstractItem(main_models.TimeStampedModel):
     
 
 class RoomType(AbstractItem):
-    slug = models.SlugField(max_length=300, unique=True)
     class Meta:
         verbose_name = "Room Type"
 
@@ -48,10 +47,10 @@ class Photo(main_models.TimeStampedModel):
 class Room(main_models.TimeStampedModel):
     nom = models.CharField(max_length=140)
     description = models.TextField()
-    prix_par_nuit = models.IntegerField()
-    prix_par_semaine = models.IntegerField()
-    prix_par_mois = models.IntegerField()
-    caution = models.IntegerField()
+    prix_par_nuit = models.IntegerField(default=0)
+    prix_par_semaine = models.IntegerField(default=0)
+    prix_par_mois = models.IntegerField(default=0)
+    caution = models.IntegerField(default=0)
     adresse = models.CharField(max_length=200)
     nombre_de_lits = models.IntegerField()
     nombre_de_chambres = models.IntegerField()
