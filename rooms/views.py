@@ -103,7 +103,7 @@ def book_room(request, pk):
     message = f"Salut, je suis intéressé par cet appartement: {room_url}"
     
     # Define the recipient number
-    recipient_number = '22890667515'  # Replace with the recipient's phone number
+    recipient_number = '22893716116'  # Replace with the recipient's phone number
     
     # Construct the WhatsApp URL with recipient number and message
     whatsapp_params = {

@@ -79,6 +79,7 @@ db.sqlite3
 
 /media
 sank/sank/settings.py
-*/sank/settings.py
-**/settings.py
+/sank/settings.py
+/settings.py
+settings.py
 .env
